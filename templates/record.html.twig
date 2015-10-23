@@ -12,28 +12,19 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1, maximum-scale=1">
 
-<link rel="stylesheet"
-	href="http://www.gumbyframework.com/css/gumby.css?1379423984">
+<link rel="stylesheet" href="/css/gumby.css">
 
 <style type="text/css">
 .row .twelve.columns {
 	width: 100%;
-};
+}
+;
 </style>
 
 
 </head>
 
 <body id="journeys-end">
-
-	<div class="panel body-panel">
-		<div class="row">
-			<div class="twelve columns">
-				<h2 class="headline">Info</h2>
-				<p class="subhead">{{ element.info|raw }}</p>
-			</div>
-		</div>
-	</div>
 
 	<div class="panel body-panel">
 		<div class="row">
@@ -48,18 +39,23 @@
 		<div class="row">
 			<div class="twelve columns">
 				<h2 class="headline">Errors</h2>
-				<p class="subhead">{{ element.error|raw }}</p>
+				<p class="subhead">
+					{{ element.error|raw }}				
+					{{ element.notice|raw }}
+				</p>
 			</div>
 		</div>
 	</div>
+
 	<div class="panel body-panel">
 		<div class="row">
 			<div class="twelve columns">
-				<h2 class="headline">Notices</h2>
-				<p class="subhead">{{ element.notice|raw }}</p>
+				<h2 class="headline">Info</h2>
+				<p class="subhead">{{ element.info|raw }}</p>
 			</div>
 		</div>
 	</div>
+
 
 	<div class="wrapper shaded blue-shade" id="subfoot">
 		<section class="row">
