@@ -28,7 +28,7 @@ class Parser {
 		foreach ($this->finder as $file) {
 			if($filesystem->exists($file)) {
 				array_push($collection, $constructor($file));
-				$filesystem->remove($file);
+// 				$filesystem->remove($file);
 			}
 		}
 
