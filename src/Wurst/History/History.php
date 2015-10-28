@@ -45,7 +45,7 @@ class History
 				$record->setError(pq('error')->text());
 				$record->setNotice(pq('notice')->text());
 				$record->setFatal(pq('fatal')->text());
-				$record->setInfo(pq('log')->text());
+// 				$record->setInfo(pq('log')->text());
 				
 				return $record;
 			});
