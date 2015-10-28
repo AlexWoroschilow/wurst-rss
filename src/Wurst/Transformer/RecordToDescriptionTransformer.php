@@ -12,8 +12,8 @@ class RecordToDescriptionTransformer {
 	}
 	public function transform(Record $element) {
 		
-		$element->setNotice ( str_replace ( ",", ", ", substr ( $element->getNotice (), 0, $this->limit ) ) );
-		$element->setNotice ( str_replace ( "\n", "<br/>", $element->getNotice () ) );
+		$element->setInfo ( str_replace ( ",", ", ", substr ( $element->getInfo(), 0, $this->limit ) ) );
+		$element->setInfo ( str_replace ( "\n", "<br/>", $element->getInfo () ) );
 		
 		$element->setFatal ( str_replace ( ",", ", ", substr ( $element->getFatal (), 0, $this->limit ) ) );
 		$element->setFatal ( str_replace ( "\n", "<br/>", $element->getFatal () ) );
