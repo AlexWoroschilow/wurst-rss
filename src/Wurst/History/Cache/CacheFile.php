@@ -42,7 +42,7 @@ class CacheFile implements CacheInterface
 			return $item1->getDate() > $item2->getDate() ? -1 : 1;
 		});
 
-		if(!($slice = array_chunk($collection, 100))) {
+		if(!($slice = array_chunk($collection, 20))) {
 			throw new \Exception('Can not chunk array');
 		}
 
