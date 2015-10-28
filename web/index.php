@@ -49,7 +49,7 @@ $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT) {
 	
 	$transformerCategory = new RecordToCategoryTransformer ();
 	$transformerTitle = new RecordToTitleTransformer ( $transformerCategory );
-	$transformerDescription = new RecordToDescriptionTransformer ();
+	$transformerDescription = new RecordToDescriptionTransformer ($app ['twig']);
 	
 	foreach ( $app ['wurst.history']->collection () as $id => $element ) {
 		
