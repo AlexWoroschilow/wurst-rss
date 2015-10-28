@@ -1,10 +1,10 @@
 <?php
 require_once './bootstrap.php';
 
-assert ( ! empty ( $FOLDER_ROOT ), 'Project root folder should be defined' );
-assert ( ! empty ( $FOLDER_XML ), 'Xml status files folder should be defined' );
-assert ( ! empty ( $FILE_HISTORY_CACHE ), 'History cache file should be defined' );
-assert ( ! empty ( $SERVER_ROOT ), 'Server root string should not be empty' );
+assert ( ! empty ( $FOLDER_ROOT ), 'Variable $FOLDER_ROOT should be defined' );
+assert ( ! empty ( $FOLDER_XML ), 'Variable $FOLDER_XML should be defined' );
+assert ( ! empty ( $FILE_HISTORY_CACHE ), 'Variable $FILE_HISTORY_CACHE should be defined' );
+assert ( ! empty ( $SERVER_ROOT ), 'Variable $SERVER_ROOT should be defined' );
 
 $loader = require_once "{$FOLDER_ROOT}/vendor/autoload.php";
 $loader->add ( "Wurst", "{$FOLDER_ROOT}/src" );
@@ -18,6 +18,7 @@ use Wurst\Transformer\RecordToDescriptionTransformer;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Wurst\Transformer\RecordToTitleTransformer;
 
 $app = new Silex\Application ();
 $app ['debug'] = true;
@@ -47,20 +48,18 @@ $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT) {
 	$channel->appendTo ( $feed );
 	
 	$transformerCategory = new RecordToCategoryTransformer ();
+	$transformerTitle = new RecordToTitleTransformer ( $transformerCategory );
 	$transformerDescription = new RecordToDescriptionTransformer ();
 	
 	foreach ( $app ['wurst.history']->collection () as $id => $element ) {
 		
-		$category = $transformerCategory->transform ( $element );
-		$description = $transformerDescription->transform ( $element );
-		
 		$item = new Item ();
-		$item->author ( "Wurst status server" );
+		$item->author ( "wurst update" );
 		$item->url ( "http://{$SERVER_ROOT}/details/{$id}" );
-		$item->title ( "{$element->getName ()} " . strtolower ( $category ) );
 		$item->pubDate ( $element->getDate () );
-		$item->category ( $category );
-		$item->description ( $description );
+		$item->title ( $transformerTitle->transform ( $element ) );
+		$item->category ( $transformerCategory->transform ( $element ) );
+		$item->description ( $transformerDescription->transform ( $element ) );
 		$item->appendTo ( $channel );
 	}
 	
