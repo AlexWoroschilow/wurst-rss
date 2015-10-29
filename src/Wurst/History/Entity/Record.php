@@ -4,13 +4,14 @@ namespace Wurst\History\Entity;
 
 class Record {
 	protected $name;
+	protected $description;
 	protected $date;
 	protected $status;
-	protected $error;
-	protected $notice;
-	protected $fatal;
 	protected $info;
-	protected $description;
+	protected $warning;
+	protected $error;
+	protected $strerr;
+	protected $fatal;
 	public function getName() {
 		return $this->name;
 	}
@@ -32,6 +33,20 @@ class Record {
 		$this->status = $status;
 		return $this;
 	}
+	public function getInfo() {
+		return $this->info;
+	}
+	public function setInfo($info) {
+		$this->info = $info;
+		return $this;
+	}
+	public function getWarning() {
+		return $this->warning;
+	}
+	public function setWarning($warning) {
+		$this->warning = $warning;
+		return $this;
+	}
 	public function getError() {
 		return $this->error;
 	}
@@ -39,11 +54,11 @@ class Record {
 		$this->error = $error;
 		return $this;
 	}
-	public function getNotice() {
-		return $this->notice;
+	public function getStderr() {
+		return $this->stderr;
 	}
-	public function setNotice($notice) {
-		$this->notice = $notice;
+	public function setStderr($stderr) {
+		$this->error = $stderr;
 		return $this;
 	}
 	public function getFatal() {
@@ -51,13 +66,6 @@ class Record {
 	}
 	public function setFatal($fatal) {
 		$this->fatal = $fatal;
-		return $this;
-	}
-	public function getInfo() {
-		return $this->info;
-	}
-	public function setInfo($info) {
-		$this->info = $info;
 		return $this;
 	}
 	public function getDescription() {

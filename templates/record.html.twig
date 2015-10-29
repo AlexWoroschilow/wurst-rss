@@ -14,7 +14,7 @@
 	<div class="panel body-panel">
 		<div class="row">
 			<div class="twelve columns">
-				<h2 class="headline">Fatal</h2>
+				<h2 class="headline">Fatal errors</h2>
 				<p class="subhead">{{ element.fatal|raw }}</p>
 			</div>
 		</div>
@@ -24,6 +24,7 @@
 		<div class="row">
 			<div class="twelve columns">
 				<h2 class="headline">Probably critical errors</h2>
+				<p class="subhead">{{ element.stderr|raw }}</p>
 				<p class="subhead">{{ element.error|raw }}</p>
 			</div>
 		</div>
@@ -32,8 +33,8 @@
 	<div class="panel body-panel">
 		<div class="row">
 			<div class="twelve columns">
-				<h2 class="headline">Non critical errors</h2>
-				<p class="subhead">{{ element.notice|raw }}</p>
+				<h2 class="headline">Warning and non critical errors</h2>
+				<p class="subhead">{{ element.warning|raw }}</p>
 			</div>
 		</div>
 	</div>

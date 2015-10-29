@@ -78,18 +78,17 @@ $app->get ( '/details/{unique}', function (Request $request, $unique) use($app) 
 	
 	assert ( ($collection = $app ['wurst.history']->collection ()), "History can not be empty" );
 	assert ( ($element = isset ( $collection [$unique] ) ? $collection [$unique] : null), "Unknown record index" );
-	
-	$element->setNotice ( str_replace ( "\n", "<br/>", $element->getNotice () ) );
-	$element->setNotice ( str_replace ( ",", ", ", $element->getNotice () ) );
-	
+
 	$element->setInfo ( str_replace ( "\n", "<br/>", $element->getInfo () ) );
 	$element->setInfo ( str_replace ( ",", ", ", $element->getInfo () ) );
+	
+	$element->setWarning ( str_replace ( "\n", "<br/>", $element->getWarning () ) );
+	$element->setWarning ( str_replace ( ",", ", ", $element->getWarning () ) );
 	
 	$element->setError ( str_replace ( "\n", "<br/>", $element->getError () ) );
 	$element->setError ( str_replace ( ",", ", ", $element->getError () ) );
-	
-	$element->setInfo ( str_replace ( "\n", "<br/>", $element->getInfo () ) );
-	$element->setInfo ( str_replace ( ",", ", ", $element->getInfo () ) );
+
+	$element->setStderr ( str_replace ( "\n", "<br/>", $element->getStderr () ) );
 	
 	$element->setFatal ( str_replace ( "\n", "<br/>", $element->getFatal () ) );
 	$element->setFatal ( str_replace ( ",", ", ", $element->getFatal () ) );

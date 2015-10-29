@@ -50,6 +50,6 @@ class RecordToCategoryTransformer {
 	 * @param Record $record        	
 	 */
 	public function isProbablyFatal(Record $record) {
-		return (! strlen ( $record->getFatal () ) and strlen ( $record->getError () ));
+		return (! strlen ( $record->getFatal () ) and (strlen ( $record->getError () ) or strlen ( $record->getStderr () )));
 	}
 }

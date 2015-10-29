@@ -42,10 +42,11 @@ class History
 				$record->setName(pq('task')->text());
 				$record->setDate(pq('date')->text());
 				$record->setStatus(pq('status')->text());
+				$record->setInfo(pq('info')->text());
+				$record->setWarning(pq('warning')->text());
 				$record->setError(pq('error')->text());
-				$record->setNotice(pq('notice')->text());
+				$record->setStderr(pq('stderr')->text());
 				$record->setFatal(pq('fatal')->text());
-// 				$record->setInfo(pq('log')->text());
 				
 				return $record;
 			});
