@@ -12,7 +12,7 @@ class RecordToDescriptionTransformer {
 	}
 	public function transform(Record $element) {
 		
-		$element->setInfo ( str_replace ( ",", ", ", substr ( $element->getInfo(), 0, $this->limit ) ) );
+		$element->setInfo ( str_replace ( ",", ", ", $element->getInfo() ) );
 		$element->setInfo ( str_replace ( "\n", "<br/>", $element->getInfo () ) );
 
 		$element->setWarning ( str_replace ( "\n", "<br/>", substr ( $element->getWarning(), 0, $this->limit ) ) );
