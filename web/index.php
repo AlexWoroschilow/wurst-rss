@@ -37,7 +37,7 @@ $app->register ( new Wurst\Provider\WurstServiceProvider ( array (
  * status xml files or from cache, of no statuses found
  * i think it is easy to understand
  */
-$app->get ( '/', function (Request $request) use($app, $SERVER_ROOT) {
+$app->get ( '/', function (Request $request) use($app, $SERVER_ROOT, $SERVER_ROOT_SCRIPT) {
 	
 	$feed = new Feed ();
 	
