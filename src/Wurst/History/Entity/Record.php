@@ -68,7 +68,7 @@ class Record {
 		return $this->stderr;
 	}
 	public function setStderr($stderr) {
-		$this->stder = $stderr;
+		$this->stderr = $stderr;
 		return $this;
 	}
 	public function getFatal() {
