@@ -47,7 +47,7 @@ class History
 				$record->setError(pq('error')->text());
 				$record->setStderr(pq('stderr')->text());
 				$record->setFatal(pq('fatal')->text());
-				
+				$record->setLogfile(pq('logfile')->text());
 				return $record;
 			});
 

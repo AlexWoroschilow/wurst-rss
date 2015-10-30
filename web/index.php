@@ -1,10 +1,10 @@
 <?php
 require_once './bootstrap.php';
 
-assert ( ! empty ( $FOLDER_ROOT ), 'Variable $FOLDER_ROOT should be defined' );
-assert ( ! empty ( $FOLDER_XML ), 'Variable $FOLDER_XML should be defined' );
-assert ( ! empty ( $FILE_HISTORY_CACHE ), 'Variable $FILE_HISTORY_CACHE should be defined' );
-assert ( ! empty ( $SERVER_ROOT ), 'Variable $SERVER_ROOT should be defined' );
+assert ( ! empty ( $FOLDER_ROOT ));
+assert ( ! empty ( $FOLDER_XML ));
+assert ( ! empty ( $FILE_HISTORY_CACHE ));
+assert ( ! empty ( $SERVER_ROOT ));
 
 $loader = require_once "{$FOLDER_ROOT}/vendor/autoload.php";
 $loader->add ( "Wurst", "{$FOLDER_ROOT}/src" );
@@ -79,20 +79,6 @@ $app->get ( '/details/{unique}', function (Request $request, $unique) use($app) 
 	assert ( ($collection = $app ['wurst.history']->collection ()), "History can not be empty" );
 	assert ( ($element = isset ( $collection [$unique] ) ? $collection [$unique] : null), "Unknown record index" );
 
-	$element->setInfo ( str_replace ( "\n", "<br/>", $element->getInfo () ) );
-	$element->setInfo ( str_replace ( ",", ", ", $element->getInfo () ) );
-	
-	$element->setWarning ( str_replace ( "\n", "<br/>", $element->getWarning () ) );
-	$element->setWarning ( str_replace ( ",", ", ", $element->getWarning () ) );
-	
-	$element->setError ( str_replace ( "\n", "<br/>", $element->getError () ) );
-	$element->setError ( str_replace ( ",", ", ", $element->getError () ) );
-
-	$element->setStderr ( str_replace ( "\n", "<br/>", $element->getStderr () ) );
-	
-	$element->setFatal ( str_replace ( "\n", "<br/>", $element->getFatal () ) );
-	$element->setFatal ( str_replace ( ",", ", ", $element->getFatal () ) );
-	
 	return $app ['twig']->render ( 'record.html.twig', array (
 			'element' => $element 
 	) );

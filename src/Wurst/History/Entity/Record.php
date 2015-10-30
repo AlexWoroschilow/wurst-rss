@@ -10,8 +10,18 @@ class Record {
 	protected $info;
 	protected $warning;
 	protected $error;
-	protected $strerr;
+	protected $stderr;
 	protected $fatal;
+	protected $logfile;
+
+	public function getLogfile() {
+		return $this->logfile;
+	}
+	public function setLogfile($logfile) {
+		$this->logfile = $logfile;
+		return $this;
+	}
+	
 	public function getName() {
 		return $this->name;
 	}
@@ -58,7 +68,7 @@ class Record {
 		return $this->stderr;
 	}
 	public function setStderr($stderr) {
-		$this->error = $stderr;
+		$this->stder = $stderr;
 		return $this;
 	}
 	public function getFatal() {
