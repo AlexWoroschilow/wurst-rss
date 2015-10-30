@@ -55,11 +55,12 @@ $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT) {
 		
 		$item = new Item ();
 		$item->author ( "wurst update" );
-		$item->url ( "http://{$SERVER_ROOT}/details/{$id}" );
+		$item->url ( "http://{$SERVER_ROOT_SCRIPT}/details/{$id}" );
 		$item->pubDate ( $element->getDate () );
 		$item->title ( $transformerTitle->transform ( $element ) );
 		$item->category ( $transformerCategory->transform ( $element ) );
 		$item->description ( $transformerDescription->transform ( $element ) );
+		$item->enclosure("http://{$SERVER_ROOT}log/{$element->getLogfile()}", null, 'text/plain');
 		$item->appendTo ( $channel );
 	}
 	
