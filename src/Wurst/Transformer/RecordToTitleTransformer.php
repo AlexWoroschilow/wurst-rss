@@ -19,6 +19,6 @@ class RecordToTitleTransformer {
 			case 'unknown' :
 				$suffix = $category;
 		}
-		return "{$record->getName ()} $category";
+		return "{$record->getName ()} $suffix";
 	}
 }
