@@ -11,10 +11,13 @@ class RecordToTitleTransformer {
 	}
 	public function transform(Record $record) {
 		switch (($category = $this->transformer->transform ( $record ))) {
-			case 'success' :
-			case 'fatal' :
 			case 'fatal_probably' :
+				$suffix = "Success but with some errors which may be critical";
+				break;
+			case 'fatal' :
+			case 'success' :
 			case 'unknown' :
+				$suffix = $category;
 		}
 		return "{$record->getName ()} $category";
 	}
