@@ -1,10 +1,10 @@
 <?php
 require_once './bootstrap.php';
 
-assert ( ! empty ( $FOLDER_ROOT ));
-assert ( ! empty ( $FOLDER_XML ));
-assert ( ! empty ( $FILE_HISTORY_CACHE ));
-assert ( ! empty ( $SERVER_ROOT ));
+assert ( ! empty ( $FOLDER_ROOT ) );
+assert ( ! empty ( $FOLDER_XML ) );
+assert ( ! empty ( $FILE_HISTORY_CACHE ) );
+assert ( ! empty ( $SERVER_ROOT ) );
 
 $loader = require_once "{$FOLDER_ROOT}/vendor/autoload.php";
 $loader->add ( "Wurst", "{$FOLDER_ROOT}/src" );
@@ -18,7 +18,10 @@ use Wurst\Transformer\RecordToDescriptionTransformer;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Filesystem\Filesystem;
+
 use Wurst\Transformer\RecordToTitleTransformer;
+use Wurst\History\Entity\Record;
 
 $app = new Silex\Application ();
 $app ['debug'] = true;
@@ -31,6 +34,16 @@ $app->register ( new Wurst\Provider\WurstServiceProvider ( array (
 		'path.xml' => $FOLDER_XML,
 		'path.cache' => $FILE_HISTORY_CACHE 
 ) ) );
+
+$app->before ( function () use($app) {
+	$filesystem = new Filesystem ();
+	$app ['wurst.history']->collection ( function (Record $record) use($filesystem) {
+		$logfile = __DIR__ . "/log/{$record->getLogfile ()}";
+		if ($filesystem->exists ( $logfile )) {
+			$filesystem->remove ( $logfile );
+		}
+	} );
+} );
 
 /**
  * Main method to calculate rss string from
@@ -49,7 +62,7 @@ $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT, $SERVER_ROO
 	
 	$transformerCategory = new RecordToCategoryTransformer ();
 	$transformerTitle = new RecordToTitleTransformer ( $transformerCategory );
-	$transformerDescription = new RecordToDescriptionTransformer ($app ['twig']);
+	$transformerDescription = new RecordToDescriptionTransformer ( $app ['twig'] );
 	
 	foreach ( $app ['wurst.history']->collection () as $id => $element ) {
 		
@@ -60,7 +73,7 @@ $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT, $SERVER_ROO
 		$item->title ( $transformerTitle->transform ( $element ) );
 		$item->category ( $transformerCategory->transform ( $element ) );
 		$item->description ( $transformerDescription->transform ( $element ) );
-		$item->enclosure("http://{$SERVER_ROOT}log/{$element->getLogfile()}", null, 'text/plain');
+		$item->enclosure ( "http://{$SERVER_ROOT}log/{$element->getLogfile()}", null, 'text/plain' );
 		$item->appendTo ( $channel );
 	}
 	
@@ -79,7 +92,7 @@ $app->get ( '/details/{unique}', function (Request $request, $unique) use($app) 
 	
 	assert ( ($collection = $app ['wurst.history']->collection ()), "History can not be empty" );
 	assert ( ($element = isset ( $collection [$unique] ) ? $collection [$unique] : null), "Unknown record index" );
-
+	
 	return $app ['twig']->render ( 'record.html.twig', array (
 			'element' => $element 
 	) );
