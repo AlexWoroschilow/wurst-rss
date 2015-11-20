@@ -2,18 +2,17 @@
 
 namespace Wurst\History\Cache;
 
-interface CacheInterface
-{
+interface CacheInterface {
 	/**
 	 * Load data from cache
 	 */
 	public function load();
-
+	
 	/**
 	 * Refresh wurst cache
 	 *
-	 * @param unknown_type $collection
+	 * @param unknown_type $collection        	
 	 * @throws \Exception
 	 */
-	public function refresh($collection);
+	public function refresh($collection, \Closure $on_remove_record = null);
 }

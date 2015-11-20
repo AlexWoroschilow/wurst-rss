@@ -37,8 +37,8 @@ $app->register ( new Wurst\Provider\WurstServiceProvider ( array (
 
 $app->before ( function () use($app) {
 	$filesystem = new Filesystem ();
-	$app ['wurst.history']->collection ( function (Record $record) use($filesystem) {
-		$logfile = __DIR__ . "/log/{$record->getLogfile ()}";
+	$app ['wurst.history']->collection ( function (Record $record) use($FOLDER_WEB, $filesystem) {
+		$logfile = "{$FOLDER_WEB}/log/{$record->getLogfile ()}";
 		if ($filesystem->exists ( $logfile )) {
 			$filesystem->remove ( $logfile );
 		}
