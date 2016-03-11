@@ -15,7 +15,7 @@ class CacheFile implements CacheInterface {
 	 * @param unknown $source        	
 	 * @param number $limit        	
 	 */
-	public function __construct($source, $limit = 20) {
+	public function __construct($source, $limit = 100) {
 		$this->source = $source;
 		$this->limit = $limit;
 	}
