@@ -36,8 +36,7 @@ $app->register ( new Wurst\Provider\WurstServiceProvider ( array (
 
 /**
  * Main method to calculate rss string from
- * status xml files or from cache, of no statuses found
- * i think it is easy to understand
+ * status xml files or from cache
  */
 $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT, $SERVER_ROOT_SCRIPT) {
 	
