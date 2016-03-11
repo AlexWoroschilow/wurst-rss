@@ -9,16 +9,17 @@ class RecordToTitleTransformer {
 	public function __construct($transformer) {
 		$this->transformer = $transformer;
 	}
+	
+	/**
+	 * Transform record to title
+	 * 
+	 * @param Record $record
+	 */
 	public function transform(Record $record) {
-		switch (($category = $this->transformer->transform ( $record ))) {
-			case 'fatal_probably' :
-				$suffix = "success but with some errors which may be critical";
-				break;
-			case 'fatal' :
-			case 'success' :
-			case 'unknown' :
-				$suffix = $category;
-		}
-		return "{$record->getName ()} $suffix";
+		$serviceTransformer = $this->transformer;
+		
+		assert ( strlen ( $category = $serviceTransformer->transform ( $record ) ), "Category string can not be empty" );
+		
+		return "{$record->getName ()} {$category}";
 	}
 }
