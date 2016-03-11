@@ -16,41 +16,49 @@ pre{
 
 <body id="journeys-end">
 
-	<div class="panel body-panel">
-		<div class="row">
-			<div class="twelve columns">
-				<h2 class="headline">notices</h2>
-				<p class="subhead"><pre>{{ element.notice }}</pre></p>
+	{% if element.notice is defined and element.notice %}
+		<div class="panel body-panel">
+			<div class="row">
+				<div class="twelve columns">
+					<h2 class="headline">notices</h2>
+					<p class="subhead"><pre>{{ element.notice }}</pre></p>
+				</div>
 			</div>
 		</div>
-	</div>
+	{% endif %}
 
-	<div class="panel body-panel">
-		<div class="row">
-			<div class="twelve columns">
-				<h2 class="headline">logs</h2>
-				<p class="subhead"><pre>{{ element.log }}</pre></p>
+	{% if element.log is defined and element.log %}
+		<div class="panel body-panel">
+			<div class="row">
+				<div class="twelve columns">
+					<h2 class="headline">logs</h2>
+					<p class="subhead"><pre>{{ element.log }}</pre></p>
+				</div>
 			</div>
 		</div>
-	</div>
+	{% endif %}
 
-	<div class="panel body-panel">
-		<div class="row">
-			<div class="twelve columns">
-				<h2 class="headline">errors</h2>
-				<p class="subhead"><pre>{{ element.error }}</pre></p>
+	{% if element.error is defined and element.error %}
+		<div class="panel body-panel">
+			<div class="row">
+				<div class="twelve columns">
+					<h2 class="headline">errors</h2>
+					<p class="subhead"><pre>{{ element.error }}</pre></p>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="panel body-panel">
-		<div class="row">
-			<div class="twelve columns">
-				<h2 class="headline">fatal errors</h2>
-				<p class="subhead"><pre>{{ element.fatal }}</pre></p>
+	{% endif %}
+
+	{% if element.fatal is defined and element.fatal %}
+		<div class="panel body-panel">
+			<div class="row">
+				<div class="twelve columns">
+					<h2 class="headline">fatal errors</h2>
+					<p class="subhead"><pre>{{ element.fatal }}</pre></p>
+				</div>
 			</div>
 		</div>
-	</div>
+	{% endif %}
 
 
 	<div class="wrapper shaded blue-shade" id="subfoot">
