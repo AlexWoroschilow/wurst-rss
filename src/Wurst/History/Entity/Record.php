@@ -4,24 +4,12 @@ namespace Wurst\History\Entity;
 
 class Record {
 	protected $name;
-	protected $description;
 	protected $date;
 	protected $status;
-	protected $info;
-	protected $warning;
+	protected $notice;
 	protected $error;
-	protected $stderr;
 	protected $fatal;
-	protected $logfile;
-
-	public function getLogfile() {
-		return $this->logfile;
-	}
-	public function setLogfile($logfile) {
-		$this->logfile = $logfile;
-		return $this;
-	}
-	
+	protected $log;
 	public function getName() {
 		return $this->name;
 	}
@@ -43,18 +31,11 @@ class Record {
 		$this->status = $status;
 		return $this;
 	}
-	public function getInfo() {
-		return $this->info;
+	public function getNotice() {
+		return $this->notice;
 	}
-	public function setInfo($info) {
-		$this->info = $info;
-		return $this;
-	}
-	public function getWarning() {
-		return $this->warning;
-	}
-	public function setWarning($warning) {
-		$this->warning = $warning;
+	public function setNotice($notice) {
+		$this->notice = $notice;
 		return $this;
 	}
 	public function getError() {
@@ -64,13 +45,6 @@ class Record {
 		$this->error = $error;
 		return $this;
 	}
-	public function getStderr() {
-		return $this->stderr;
-	}
-	public function setStderr($stderr) {
-		$this->stderr = $stderr;
-		return $this;
-	}
 	public function getFatal() {
 		return $this->fatal;
 	}
@@ -78,11 +52,11 @@ class Record {
 		$this->fatal = $fatal;
 		return $this;
 	}
-	public function getDescription() {
-		return $this->description;
+	public function getLog() {
+		return $this->log;
 	}
-	public function setDescription($description) {
-		$this->description = $description;
+	public function setLog($log) {
+		$this->log = $log;
 		return $this;
 	}
 	public function __toString() {

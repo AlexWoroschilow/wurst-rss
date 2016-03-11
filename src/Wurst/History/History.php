@@ -34,12 +34,10 @@ class History {
 				$record->setName ( pq ( 'task' )->text () );
 				$record->setDate ( pq ( 'date' )->text () );
 				$record->setStatus ( pq ( 'status' )->text () );
-				$record->setInfo ( pq ( 'info' )->text () );
-				$record->setWarning ( pq ( 'warning' )->text () );
+				$record->setNotice ( pq ( 'notice' )->text () );
 				$record->setError ( pq ( 'error' )->text () );
-				$record->setStderr ( pq ( 'stderr' )->text () );
 				$record->setFatal ( pq ( 'fatal' )->text () );
-				$record->setLogfile ( pq ( 'logfile' )->text () );
+				$record->setLog ( pq ( 'log' )->text () );
 				
 				return $record;
 			} );

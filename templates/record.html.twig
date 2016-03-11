@@ -12,7 +12,6 @@ pre{
 }
 </style>
 
-
 </head>
 
 <body id="journeys-end">
@@ -20,8 +19,8 @@ pre{
 	<div class="panel body-panel">
 		<div class="row">
 			<div class="twelve columns">
-				<h2 class="headline">Info</h2>
-				<p class="subhead"><pre>{{ element.info }}</pre></p>
+				<h2 class="headline">notices</h2>
+				<p class="subhead"><pre>{{ element.notice }}</pre></p>
 			</div>
 		</div>
 	</div>
@@ -29,7 +28,16 @@ pre{
 	<div class="panel body-panel">
 		<div class="row">
 			<div class="twelve columns">
-				<h2 class="headline">Fatal errors</h2>
+				<h2 class="headline">errors</h2>
+				<p class="subhead"><pre>{{ element.error }}</pre></p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel body-panel">
+		<div class="row">
+			<div class="twelve columns">
+				<h2 class="headline">fatal errors</h2>
 				<p class="subhead"><pre>{{ element.fatal }}</pre></p>
 			</div>
 		</div>
@@ -38,18 +46,8 @@ pre{
 	<div class="panel body-panel">
 		<div class="row">
 			<div class="twelve columns">
-				<h2 class="headline">Probably critical errors</h2>
-				<p class="subhead">{{ element.stderr|raw }}</p>
-				<p class="subhead"><pre>{{ element.error }}</pre></p>
-			</div>
-		</div>
-	</div>
-
-	<div class="panel body-panel">
-		<div class="row">
-			<div class="twelve columns">
-				<h2 class="headline">Warning and non critical errors</h2>
-				<p class="subhead"><pre>{{ element.warning }}</pre></p>
+				<h2 class="headline">logs</h2>
+				<p class="subhead"><pre>{{ element.log }}</pre></p>
 			</div>
 		</div>
 	</div>

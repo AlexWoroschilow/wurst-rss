@@ -73,7 +73,6 @@ $app->get ( '/', function (Request $request) use($app, $SERVER_ROOT, $SERVER_ROO
 		$item->title ( $transformerTitle->transform ( $element ) );
 		$item->category ( $transformerCategory->transform ( $element ) );
 		$item->description ( $transformerDescription->transform ( $element ) );
-		$item->enclosure ( "http://{$SERVER_ROOT}log/{$element->getLogfile()}", null, 'text/plain' );
 		$item->appendTo ( $channel );
 	}
 	
