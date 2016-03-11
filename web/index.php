@@ -18,10 +18,8 @@ use Wurst\Transformer\RecordToDescriptionTransformer;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Filesystem\Filesystem;
 
 use Wurst\Transformer\RecordToTitleTransformer;
-use Wurst\History\Entity\Record;
 
 $app = new Silex\Application ();
 $app ['debug'] = true;
@@ -35,15 +33,6 @@ $app->register ( new Wurst\Provider\WurstServiceProvider ( array (
 		'path.cache' => $FILE_HISTORY_CACHE 
 ) ) );
 
-$app->before ( function () use($app) {
-	$filesystem = new Filesystem ();
-	$app ['wurst.history']->collection ( function (Record $record) use($FOLDER_WEB, $filesystem) {
-		$logfile = "{$FOLDER_WEB}/log/{$record->getLogfile ()}";
-		if ($filesystem->exists ( $logfile )) {
-			$filesystem->remove ( $logfile );
-		}
-	} );
-} );
 
 /**
  * Main method to calculate rss string from
